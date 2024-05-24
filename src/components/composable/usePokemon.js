@@ -21,7 +21,12 @@ export const usePokemon = () => {
   const getPokemonById = async (item) => {
     try {
       const { data } = await axios.get(item.url);
-      return data;
+
+      const sprite = data.sprites.front_default;
+      const name = data.name;
+      const id = data.order;
+
+      return { sprite, name, id };
     } catch (error) {
       console.error('Error fetching Pokémon data:', error);
       return null;
